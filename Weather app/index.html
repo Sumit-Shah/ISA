@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <link rel="stylesheet" href="style.css"> <!-- Link to external CSS file -->
+</head>
+<body>
+    <div class="container">
+        <div class="Weather_header">
+            <form class="Weather_search">
+                <input type="text" placeholder="City Name." class="Weather_searchform"> <!-- Input field for city name -->
+                <i class="fa-solid fa-magnifying-glass"></i> <!-- Icon for search button -->
+            </form>
+            <div class="weather_body">
+                <h1 class="weather_city"></h1> <!-- Element for displaying city name -->
+                <div class="weather_datetime"></div> <!-- Element for displaying date and time -->
+                <div class="weather_forecast"></div> <!-- Element for displaying weather forecast -->
+                <div class="weather_icon"></div> <!-- Element for displaying weather icon -->
+                <p class="weather_temperature"></p> <!-- Element for displaying temperature -->
+                <div class="weather_minmax">
+                    <p>Min: 12&#176</p> <!-- Element for displaying minimum temperature -->
+                    <p>Max: 16&#176</p> <!-- Element for displaying maximum temperature -->
+                </div>
+            </div>
+        </div>
+        <div class="weather_info">
+            <div class="weather_card">
+                <i class="fa-solid fa-temperature-full"></i> <!-- Icon for real feel temperature -->
+                <div>
+                    <p>Real Feel</p> <!-- Label for real feel temperature -->
+                    <p class="weather_realfeel"></p> <!-- Element for displaying real feel temperature -->
+                </div>
+            </div>
+            <div class="weather_card">
+                <i class="fa-solid fa-gauge-high"></i> <!-- Icon for pressure -->
+                <div>
+                    <p>Pressure</p> <!-- Label for pressure -->
+                    <p class="weather_pressure"></p> <!-- Element for displaying pressure -->
+                </div>
+            </div>
+            <div class="weather_card">
+                <i class="fa-solid fa-wind"></i> <!-- Icon for wind speed -->
+                <div>
+                    <p>Wind Speed</p> <!-- Label for wind speed -->
+                    <p class="weather__ind"></p> <!-- Element for displaying wind speed -->
+                </div>
+            </div>
+            <div class="weather_card">
+                <i class="fa-solid fa-droplet"></i> <!-- Icon for humidity -->
+                <div>
+                    <p>Humidity</p> <!-- Label for humidity -->
+                    <p class="weather_humidity"></p> <!-- Element for displaying humidity -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://kit.fontawesome.com/a692e1c39f.js" crossorigin="anonymous"></script> <!-- Link to Font Awesome JavaScript library -->
+    <script src="script.js"></script> <!-- Link to external JavaScript file -->
+</body>
+</html>
