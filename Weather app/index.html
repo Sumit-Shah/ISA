@@ -1,3 +1,4 @@
+<!-- 2358830_SUMITSHAH -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,10 +10,10 @@
 <body>
     <div class="container">
         <div class="Weather_header">
-            <form class="Weather_search">
-                <input type="text" placeholder="City Name." class="Weather_searchform"> <!-- Input field for city name -->
-                <i class="fa-solid fa-magnifying-glass"></i> <!-- Icon for search button -->
-            </form>
+            <div class="Weather_search">
+                <input type="text" placeholder="City Name111." id="usercity"> <!-- Input field for city name -->
+                <button class="searchButton">Search</button>
+            </div>
             <div class="weather_body">
                 <h1 class="weather_city"></h1> <!-- Element for displaying city name -->
                 <div class="weather_datetime"></div> <!-- Element for displaying date and time -->
@@ -54,9 +55,16 @@
                     <p class="weather_humidity"></p> <!-- Element for displaying humidity -->
                 </div>
             </div>
+            <div>
+                <button onclick="window.location.href='http://localhost/weather/display.php';" class="button">SAVED DATA</button>
+                <p class="saved-data"></p>
+                               
+            </div>
         </div>
     </div>
     <script src="https://kit.fontawesome.com/a692e1c39f.js" crossorigin="anonymous"></script> <!-- Link to Font Awesome JavaScript library -->
     <script src="script.js"></script> <!-- Link to external JavaScript file -->
 </body>
+<script src="./script.js">
+</script>
 </html>

@@ -1,3 +1,4 @@
+/* 2358830_SUMITSHAH */
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
 /* Reset CSS */
@@ -10,12 +11,12 @@
 
 /* Body styles */
 body {
-    background-color: #c9cde0;
+    background-color: #dfe2f1;
 }
 
 /* Container styles */
 .container {
-    background: #d7d6da;
+    background: #c0b5e3;
     color: #161616;
     padding: 2rem;
     width: 40%;
@@ -62,7 +63,7 @@ input::placeholder {
 
 /* Temperature unit styles */
 .weather_units {
-    font-size: 1.5rem;
+    font-size: 3.5rem;
 }
 
 .weather_units span {
@@ -82,7 +83,7 @@ input::placeholder {
 
 .weather_datetime {
     margin-bottom: 2rem;
-    font-size: 18px;
+    font-size: 20px;
     color: #000000;
 }
 
@@ -91,7 +92,7 @@ input::placeholder {
     display: inline-block;
     padding: 0.5rem 1rem;
     border-radius: 30px;
-    color: #424040;
+    color: #0a0a0a;
 }
 
 .weather_icon img {
@@ -110,7 +111,7 @@ input::placeholder {
 }
 
 .weather_minmax p {
-    font-size: 14px;
+    font-size: 20px;
     margin: 0.5rem;
     color: #000000;
 }
@@ -138,7 +139,7 @@ input::placeholder {
 }
 
 .weather_card p {
-    font-size: 14px;
+    font-size: 20px;
     color: #000000;
 }
 
@@ -162,3 +163,31 @@ input::placeholder {
         grid-template-columns: none;
     }
 }
+/* Button styles */
+.button {
+    display: inline-block;
+    background-color: #6c63ff;
+    color: #ffffff;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.button:hover {
+    background-color: #564dff;
+}
+.searchButton{
+    display: inline-block;
+    background-color: #6c63ff;
+    color: #ffffff;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: background-color 0.3s ease-in-out;
+}
+

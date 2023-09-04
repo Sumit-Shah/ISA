@@ -1,61 +1,73 @@
 // Selecting HTML elements
-const searchForm = document.querySelector('.Weather_search'); // The search form element
-const searchInput = document.querySelector('.Weather_searchform'); // The input field for city name
-const cityHeader = document.querySelector('.weather_city'); // Element for displaying city name
-const dateTime = document.querySelector('.weather_datetime'); // Element for displaying date and time
-const forecast = document.querySelector('.weather_forecast'); // Element for displaying weather forecast
-const weatherIcon = document.querySelector('.weather_icon'); // Element for displaying weather icon
-const temperature = document.querySelector('.weather_temperature'); // Element for displaying temperature
-const minMax = document.querySelector('.weather_minmax'); // Element for displaying min and max temperatures
-const realFeel = document.querySelector('.weather_realfeel'); // Element for displaying real feel temperature
-const pressure = document.querySelector('.weather_pressure'); // Element for displaying atmospheric pressure
-const windSpeed = document.querySelector('.weather__ind'); // Element for displaying wind speed
-const humidity = document.querySelector('.weather_humidity'); // Element for displaying humidity
+const cityHeader = document.querySelector('.weather_city');
+const weatherIcon = document.querySelector('.weather_icon');
+const temperature = document.querySelector('.weather_temperature');
+const minMax = document.querySelector('.weather_minmax');
+const realFeel = document.querySelector('.weather_realfeel');
+const pressure = document.querySelector('.weather_pressure');
+const windSpeed = document.querySelector('.weather__ind');
+const humidity = document.querySelector('.weather_humidity');
 
 // Function to update the weather information in the HTML
 function updateWeatherData(data) {
-  // Updating HTML elements with weather data
-  cityHeader.textContent = data.name;
-  dateTime.textContent = new Date(data.dt * 1000).toLocaleString();
-  forecast.textContent = data.weather[0].description;
-  weatherIcon.innerHTML = `<img src="http://openweathermap.org/img/w/${data.weather[0].icon}.png" alt="Weather Icon">`;
-  temperature.textContent = `${Math.round(data.main.temp)}°C`;
-  minMax.innerHTML = `<p>Min: ${Math.round(data.main.temp_min)}°</p><p>Max: ${Math.round(data.main.temp_max)}°</p>`;
-  realFeel.textContent = `${Math.round(data.main.feels_like)}°C`;
-  pressure.textContent = `${data.main.pressure} hPa`;
-  windSpeed.textContent = `${data.wind.speed} m/s`;
-  humidity.textContent = `${data.main.humidity}%`;
+    // Updating HTML elements with weather data
+    cityHeader.textContent = data.city;
+    weatherIcon.innerHTML = `<img src="http://openweathermap.org/img/w/${data.icon}.png" alt="Weather Icon">`;
+    temperature.textContent = `${Math.round(data.temperature)}°C`;
+    minMax.innerHTML = `<p>Min: ${Math.round(data.tempMin)}°</p><p>Max: ${Math.round(data.tempMax)}°</p>`;
+    realFeel.textContent = `${Math.round(data.feelsLike)}°C`;
+    pressure.textContent = `${data.pressure} hPa`;
+    windSpeed.textContent = `${data.windSpeed} m/s`;
+    humidity.textContent = `${data.humidity}%`;
 }
 
-// Function to fetch weather data from the API
+
+
+// Function to fetch weather data from the PHP script
 function fetchWeatherData(city) {
-  const apiKey = '815e5e85907659dda79aa952df3df600';
-  const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`;
-
-  // Fetching weather data from the API
-  fetch(apiUrl)
-    .then(response => {
-      if (!response.ok) {
-        throw new Error('Weather data not available');
-      }
-      return response.json();
-    })
-    .then(data => {
-      updateWeatherData(data);
-    })
-    .catch(error => {
-      console.log(error);
-    });
+    fetch(`http://localhost/weather/store.php?city=${city}`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            localStorage.setItem(city,JSON.stringify(data))
+            updateWeatherData(data);
+            console.log("from web")
+        })
+        .catch(error => {
+            console.error('Error fetching weather data:', error);
+        });
 }
 
-// Event listener for the form submission
-searchForm.addEventListener('submit', function (e) {
-  e.preventDefault();
-  const city = searchInput.value;
-  fetchWeatherData(city);
-  searchInput.value = '';
+document.querySelector(".searchButton").addEventListener("click", () => {
+    localFetch(document.getElementById("usercity").value);
 });
+
+function localFetch(city){
+    if(!localStorage.getItem(city)){
+        fetchWeatherData(city);
+    }
+    else{
+        updateWeatherData(JSON.parse(localStorage.getItem(city)))
+        console.log("from local strage")
+        console.log(JSON.parse(localStorage.getItem(city)))
+        clearLocalStorageAfterTimeout(city);
+    }
+}
+
+// Function to clear local storage after 10 minutes
+function clearLocalStorageAfterTimeout(city) {
+    setTimeout(() => {
+        localStorage.removeItem(city);
+        console.log(`Cleared local storage for ${city} after 10 minutes`);
+    }, 10 * 60 * 1000); // 10 minutes in milliseconds
+}
 
 // Initial weather data for a default city
 const defaultCity = 'swale';
+
+// Fetch weather data for the default city
 fetchWeatherData(defaultCity);
